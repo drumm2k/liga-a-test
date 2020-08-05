@@ -44,16 +44,28 @@ const NothingFound = styled.div`
 
 type PropTypes = {
   searchTerm: string;
+  usersData?: any;
+  postsData?: any;
 };
 
-export default function PostList({ searchTerm }: PropTypes): JSX.Element {
+export default function PostList({
+  searchTerm,
+  usersData,
+  postsData,
+}: PropTypes): JSX.Element {
   const { data: users, error: usersError } = useSWR(
-    'https://jsonplaceholder.typicode.com/users',
-    fetcher
+    `${process.env.NEXT_PUBLIC_API}/users`,
+    fetcher,
+    {
+      initialData: usersData,
+    }
   );
   const { data: posts, error: postsError } = useSWR(
-    'https://jsonplaceholder.typicode.com/posts',
-    fetcher
+    `${process.env.NEXT_PUBLIC_API}/posts`,
+    fetcher,
+    {
+      initialData: postsData,
+    }
   );
 
   if (postsError || usersError) return <div>Error loading data</div>;

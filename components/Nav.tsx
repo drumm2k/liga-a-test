@@ -3,11 +3,11 @@ import Link from 'next/link';
 const Nav = () => (
   <nav>
     <Link href="/">
-      <a>Incremental Static Regeneration</a>
+      <a>ISR</a>
     </Link>{' '}
     |{' '}
     <Link href="/client">
-      <a>Client rendering</a>
+      <a>Client only</a>
     </Link>
   </nav>
 );

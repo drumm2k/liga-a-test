@@ -14,7 +14,7 @@ const Logo = styled.h1`
 
 const Header = () => (
   <StyledHeader>
-    <Logo>Liga-A Test</Logo>
+    <Logo>Liga-A</Logo>
     <Nav />
   </StyledHeader>
 );

@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "format": "prettier --write \"**/*.{js,ts,tsx}\""
   },
   "dependencies": {
     "next": "9.5.1",
@@ -18,6 +19,7 @@
     "@types/react": "^16.9.44",
     "@types/styled-components": "^5.1.2",
     "babel-plugin-styled-components": "^1.11.1",
+    "prettier": "^2.0.5",
     "typescript": "^3.9.7"
   }
 }

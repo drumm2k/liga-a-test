@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
+import Header from './Header';
 
 type Props = {
   children?: ReactNode;
@@ -9,11 +10,7 @@ type Props = {
 
 const Wrapper = styled.div`
   max-width: 720px;
-  margin: 0 auto;
-`;
-
-const Logo = styled.h1`
-  color: ${(p) => p.theme.color.accent};
+  margin: 3rem auto;
 `;
 
 const Layout = ({ children, title = 'Liga-A Test' }: Props) => (
@@ -25,10 +22,8 @@ const Layout = ({ children, title = 'Liga-A Test' }: Props) => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <Wrapper>
-      <header>
-        <Logo>Liga-A Test</Logo>
-      </header>
-      {children}
+      <Header />
+      <main>{children}</main>
     </Wrapper>
   </>
 );

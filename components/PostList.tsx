@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import useSWR from 'swr';
 import { PostType } from '../interfaces/Post';
@@ -42,6 +43,7 @@ const PostBody = styled.div`
 `;
 
 export default function PostList(): JSX.Element {
+  const [searchTerm, setSearchTerm] = useState<string>('');
   const { data: users, error: usersError } = useSWR(
     'https://jsonplaceholder.typicode.com/users',
     fetcher
@@ -58,13 +60,30 @@ export default function PostList(): JSX.Element {
     return users.find((user: UserType) => user.id === userId);
   };
 
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredPosts = posts.filter((post: PostType) => {
+    return (
+      post.body.includes(searchTerm.toLowerCase()) ||
+      post.title.includes(searchTerm.toLowerCase())
+    );
+  });
+
   return (
     <>
       <SearchBox>
-        <Input type="text" name="search" placeholder="Search by title/post" />
+        <Input
+          type="text"
+          name="search"
+          placeholder="Search by title/post text"
+          value={searchTerm}
+          onChange={handleSearch}
+        />
       </SearchBox>
       <PostsContainer>
-        {posts.map(({ id, userId, title, body }: PostType) => (
+        {filteredPosts.map(({ id, userId, title, body }: PostType) => (
           <Post key={id}>
             <PostTitle>{title}</PostTitle>
             <PostAuthor>

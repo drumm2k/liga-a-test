@@ -43,6 +43,12 @@ const PostBody = styled.div`
   font-size: ${(p) => p.theme.font.size.md};
 `;
 
+const NothingFound = styled.div`
+  display: flex;
+  margin: ${(p) => p.theme.spacing.s8} 0;
+  justify-content: center;
+`;
+
 export default function PostList(): JSX.Element {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const { data: users, error: usersError } = useSWR(
@@ -96,6 +102,7 @@ export default function PostList(): JSX.Element {
             <PostBody>{body}</PostBody>
           </Post>
         ))}
+        {!filteredPosts.length && <NothingFound>Oops! Nothing found</NothingFound>}
       </PostsContainer>
     </>
   );

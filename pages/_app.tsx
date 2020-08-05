@@ -3,6 +3,20 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { normalize } from 'styled-normalize';
 
 const theme = {
+  font: {
+    weight: {
+      normal: '400',
+      bold: '700',
+    },
+    size: {
+      xss: '1.2rem',
+      xs: '1.4rem',
+      sm: '1.6rem',
+      md: '1.8rem',
+      lg: '2rem',
+      xl: '2.4rem',
+    },
+  },
   color: {
     white: '#fff',
     black: '#000',
@@ -32,6 +46,27 @@ const theme = {
     s16: '4rem',
     s20: '5rem',
   },
+  border: {
+    border100: 'solid 1px hsla(0, 0%, 0%, 0.04)',
+    border200: 'solid 1px hsla(0, 0%, 0%, 0.08)',
+    border300: 'solid 1px hsla(0, 0%, 0%, 0.12)',
+    border400: 'solid 1px hsla(0, 0%, 0%, 0.16)',
+    border500: 'solid 1px hsla(0, 0%, 0%, 0.2)',
+    border600: 'solid 1px hsla(0, 0%, 0%, 0.24)',
+    border700: 'solid 1px hsla(0, 0%, 0%, 0.3)',
+    border800: 'solid 1px hsla(0, 0%, 0%, 0.4)',
+    radius100: '2px',
+    radius200: '4px',
+    radius300: '8px',
+    radius400: '12px',
+    radius500: '16px',
+  },
+  lighting: {
+    shadow100: '0 1px 4px hsla(0, 0%, 0%, 0.16)',
+    shadow200: '0 2px 8px hsla(0, 0%, 0%, 0.16)',
+    shadow300: '0 4px 16px hsla(0, 0%, 0%, 0.16)',
+    shadow400: '0 8px 24px hsla(0, 0%, 0%, 0.16)',
+  },
 };
 
 const GlobalStyle = createGlobalStyle`
@@ -45,6 +80,14 @@ const GlobalStyle = createGlobalStyle`
    font-size: 1.8rem;
    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
    font-weight: 400;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin:0;
+  }
+
+  p {
+    margin:0;
   }
 
   h1 {

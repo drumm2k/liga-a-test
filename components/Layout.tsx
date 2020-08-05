@@ -9,6 +9,7 @@ type Props = {
 };
 
 const Wrapper = styled.div`
+  padding: 0 ${(p) => p.theme.spacing.s6};
   max-width: 720px;
   margin: 3rem auto;
 `;

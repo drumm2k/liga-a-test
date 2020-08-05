@@ -67,10 +67,28 @@ const theme = {
     shadow300: '0 4px 16px hsla(0, 0%, 0%, 0.16)',
     shadow400: '0 8px 24px hsla(0, 0%, 0%, 0.16)',
   },
+  input: {
+    border: '0px 0px 0px 1px rgba(60, 66, 87, 0.16)',
+    focus: '0 0 0 3px rgba(94, 96, 206, 0.36)',
+  },
 };
 
 const GlobalStyle = createGlobalStyle`
   ${normalize}
+
+  *,
+  *::before,
+  *::after {
+    box-sizing:border-box;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin:0;
+  }
+
+  p {
+    margin:0;
+  }
 
   html {
     font-size: 10px;
@@ -80,14 +98,6 @@ const GlobalStyle = createGlobalStyle`
    font-size: 1.8rem;
    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
    font-weight: 400;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    margin:0;
-  }
-
-  p {
-    margin:0;
   }
 
   h1 {

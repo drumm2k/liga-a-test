@@ -3,6 +3,11 @@ import useSWR from 'swr';
 import { PostType } from '../interfaces/Post';
 import { UserType } from '../interfaces/User';
 import fetcher from '../libs/fetcher';
+import { Input } from './Input';
+
+const SearchBox = styled.div`
+  margin-bottom: ${(p) => p.theme.spacing.s6};
+`;
 
 const PostsContainer = styled.div`
   display: grid;
@@ -46,24 +51,29 @@ export default function PostList(): JSX.Element {
     fetcher
   );
 
-  if (postsError || usersError) return <div>Ошибка загрузки данных</div>;
-  if (!posts || !users) return <div>Загрузка...</div>;
+  if (postsError || usersError) return <div>Error loading data</div>;
+  if (!posts || !users) return <div>Loading...</div>;
 
   const getUser = (userId: number) => {
     return users.find((user: UserType) => user.id === userId);
   };
 
   return (
-    <PostsContainer>
-      {posts.map(({ id, userId, title, body }: PostType) => (
-        <Post key={id}>
-          <PostTitle>{title}</PostTitle>
-          <PostAuthor>
-            {getUser(userId).name} <span>@{getUser(userId).username}</span>
-          </PostAuthor>
-          <PostBody>{body}</PostBody>
-        </Post>
-      ))}
-    </PostsContainer>
+    <>
+      <SearchBox>
+        <Input type="text" name="search" placeholder="Search by title/post" />
+      </SearchBox>
+      <PostsContainer>
+        {posts.map(({ id, userId, title, body }: PostType) => (
+          <Post key={id}>
+            <PostTitle>{title}</PostTitle>
+            <PostAuthor>
+              {getUser(userId).name} <span>@{getUser(userId).username}</span>
+            </PostAuthor>
+            <PostBody>{body}</PostBody>
+          </Post>
+        ))}
+      </PostsContainer>
+    </>
   );
 }

@@ -104,6 +104,14 @@ const GlobalStyle = createGlobalStyle`
     font-size: 2.8rem;
     line-height: 3.6rem;
   }
+
+  a {
+    color: #5e60ce;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
 `;
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {

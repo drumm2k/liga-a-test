@@ -1,4 +1,11 @@
 import styled from 'styled-components';
+import Nav from './Nav';
+
+const StyledHeader = styled.header`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
 
 const Logo = styled.h1`
   color: ${(p) => p.theme.color.accent};
@@ -6,9 +13,10 @@ const Logo = styled.h1`
 `;
 
 const Header = () => (
-  <header>
+  <StyledHeader>
     <Logo>Liga-A Test</Logo>
-  </header>
+    <Nav />
+  </StyledHeader>
 );
 
 export default Header;

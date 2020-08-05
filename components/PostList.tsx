@@ -1,15 +1,8 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import useSWR from 'swr';
 import { PostType } from '../interfaces/Post';
 import { UserType } from '../interfaces/User';
 import fetcher from '../libs/fetcher';
-import { Input } from './Input';
-import { Label } from './Label';
-
-const SearchBox = styled.div`
-  margin-bottom: ${(p) => p.theme.spacing.s6};
-`;
 
 const PostsContainer = styled.div`
   display: grid;
@@ -49,8 +42,11 @@ const NothingFound = styled.div`
   justify-content: center;
 `;
 
-export default function PostList(): JSX.Element {
-  const [searchTerm, setSearchTerm] = useState<string>('');
+type PropTypes = {
+  searchTerm: string;
+};
+
+export default function PostList({ searchTerm }: PropTypes): JSX.Element {
   const { data: users, error: usersError } = useSWR(
     'https://jsonplaceholder.typicode.com/users',
     fetcher
@@ -67,10 +63,6 @@ export default function PostList(): JSX.Element {
     return users.find((user: UserType) => user.id === userId);
   };
 
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
-  };
-
   const filteredPosts = posts.filter((post: PostType) => {
     return (
       post.body.includes(searchTerm.toLowerCase()) ||
@@ -79,31 +71,17 @@ export default function PostList(): JSX.Element {
   });
 
   return (
-    <>
-      <SearchBox>
-        <Label>
-          Search
-          <Input
-            type="text"
-            name="search"
-            placeholder="by title/post text"
-            value={searchTerm}
-            onChange={handleSearch}
-          />
-        </Label>
-      </SearchBox>
-      <PostsContainer>
-        {filteredPosts.map(({ id, userId, title, body }: PostType) => (
-          <Post key={id}>
-            <PostTitle>{title}</PostTitle>
-            <PostAuthor>
-              {getUser(userId).name} <span>@{getUser(userId).username}</span>
-            </PostAuthor>
-            <PostBody>{body}</PostBody>
-          </Post>
-        ))}
-        {!filteredPosts.length && <NothingFound>Oops! Nothing found</NothingFound>}
-      </PostsContainer>
-    </>
+    <PostsContainer>
+      {filteredPosts.map(({ id, userId, title, body }: PostType) => (
+        <Post key={id}>
+          <PostTitle>{title}</PostTitle>
+          <PostAuthor>
+            {getUser(userId).name} <span>@{getUser(userId).username}</span>
+          </PostAuthor>
+          <PostBody>{body}</PostBody>
+        </Post>
+      ))}
+      {!filteredPosts.length && <NothingFound>Oops! Nothing found</NothingFound>}
+    </PostsContainer>
   );
 }

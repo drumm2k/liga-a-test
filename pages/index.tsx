@@ -5,7 +5,7 @@ const Hello = styled.div`
   background-color: palegoldenrod;
 `;
 
-export default function Home() {
+export default function Home(): JSX.Element {
   return (
     <div>
       <Head>

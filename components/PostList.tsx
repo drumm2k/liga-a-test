@@ -5,6 +5,7 @@ import { PostType } from '../interfaces/Post';
 import { UserType } from '../interfaces/User';
 import fetcher from '../libs/fetcher';
 import { Input } from './Input';
+import { Label } from './Label';
 
 const SearchBox = styled.div`
   margin-bottom: ${(p) => p.theme.spacing.s6};
@@ -74,13 +75,16 @@ export default function PostList(): JSX.Element {
   return (
     <>
       <SearchBox>
-        <Input
-          type="text"
-          name="search"
-          placeholder="Search by title/post text"
-          value={searchTerm}
-          onChange={handleSearch}
-        />
+        <Label>
+          Search
+          <Input
+            type="text"
+            name="search"
+            placeholder="by title/post text"
+            value={searchTerm}
+            onChange={handleSearch}
+          />
+        </Label>
       </SearchBox>
       <PostsContainer>
         {filteredPosts.map(({ id, userId, title, body }: PostType) => (

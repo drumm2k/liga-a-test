@@ -1,4 +1,9 @@
-import Head from "next/head";
+import Head from 'next/head';
+import styled from 'styled-components';
+
+const Hello = styled.div`
+  background-color: palegoldenrod;
+`;
 
 export default function Home() {
   return (
@@ -9,7 +14,7 @@ export default function Home() {
       </Head>
 
       <main>
-        <div>Hello</div>
+        <Hello>Hello</Hello>
       </main>
     </div>
   );
